@@ -176,7 +176,6 @@
                 android:background="@color/white"
                 android:drawableRight="@mipmap/zhaomima"
                 android:text="忘记密码"
-                android:textAlignment="left"
                 android:textColor="@color/TitleBar"
                 android:visibility="invisible" />
 
@@ -190,7 +189,6 @@
                 android:background="@color/white"
                 android:drawableRight="@mipmap/zhaomima"
                 android:text="忘记密码"
-                android:textAlignment="left"
                 android:textColor="@color/TitleBar" />
         </LinearLayout>
 
