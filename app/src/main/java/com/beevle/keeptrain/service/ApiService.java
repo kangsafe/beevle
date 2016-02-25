@@ -30,15 +30,18 @@ public class ApiService {
 
     @SuppressWarnings("unused")
     private static final String TAG = "DEBUG-ApiService: " + ApiService.class.getSimpleName();
+    private static IApiService apiService;
+
+    public ApiService() {
+        apiService =
+                ServiceFactory.createServiceFrom(IApiService.class, IApiService.ENDPOINT);
+    }
 
     /**
      * 获取token
      */
     @SuppressWarnings("unused")
     public static void getToken(TokenCallback tokenCallback) {
-        IApiService apiService =
-                ServiceFactory.createServiceFrom(IApiService.class, IApiService.ENDPOINT);
-
         apiService.getToken(BwConst.AppId, BwConst.AppSecret, "client_credential")
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -140,28 +143,24 @@ public class ApiService {
     }
 
     public static void Login(String phone, String pass, ServiceCallbak serviceCallbak) {
-        IApiService apiService =
-                ServiceFactory.createServiceFrom(IApiService.class, IApiService.ENDPOINT);
-
         apiService.Login(phone, MD5Util.getMD5String(pass), UserToken.getToken())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> onServiceSuccess(result, serviceCallbak),
                         throwable -> onServiceError(throwable, serviceCallbak));
     }
+
     /**
      * 获取验证码
-     * */
-    public static void getCaptcha(String phone,String type, ServiceCallbak serviceCallbak) {
-        IApiService apiService =
-                ServiceFactory.createServiceFrom(IApiService.class, IApiService.ENDPOINT);
-
+     */
+    public static void getCaptcha(String phone, String type, ServiceCallbak serviceCallbak) {
         apiService.getCaptcha(phone, type, UserToken.getToken())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> onServiceSuccess(result, serviceCallbak),
                         throwable -> onServiceError(throwable, serviceCallbak));
     }
+
     // 显示信息
     private static void onServiceSuccess(BwResult result, ServiceCallbak serviceCallbak) {
         Log.e(TAG, "返回数据: " + result.toString());
