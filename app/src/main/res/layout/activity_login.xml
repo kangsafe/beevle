@@ -133,19 +133,17 @@
 
 
         <Button
-            android:id="@+id/email_sign_in_button"
+            android:id="@+id/btn_login"
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/btn_login"
+            android:onClick="onClick"
             android:text="@string/action_sign_in"
             android:textColor="@color/white"
             android:textSize="16dp"
             android:textStyle="bold" />
-
-
-        <!-- 记住用户名 -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -154,7 +152,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btn_register"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
@@ -163,11 +161,12 @@
                 android:background="@color/white"
                 android:drawableLeft="@mipmap/zhuce"
                 android:drawableStart="@mipmap/zhuce"
+                android:onClick="onClick"
                 android:text="注 册"
                 android:textColor="@color/TitleBar" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btn_findpwd_middle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
@@ -180,7 +179,7 @@
                 android:visibility="invisible" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btn_findpwd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
@@ -188,6 +187,7 @@
                 android:layout_weight="1"
                 android:background="@color/white"
                 android:drawableRight="@mipmap/zhaomima"
+                android:onClick="onClick"
                 android:text="忘记密码"
                 android:textColor="@color/TitleBar" />
         </LinearLayout>
@@ -217,27 +217,30 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/imgbtn_qqlogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/white"
+                android:onClick="onClick"
                 android:src="@mipmap/qq" />
 
             <ImageButton
-                android:id="@+id/imageButton2"
+                android:id="@+id/imgbtn_wxlogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/white"
+                android:onClick="onClick"
                 android:src="@mipmap/weixin" />
 
             <ImageButton
-                android:id="@+id/imageButton3"
+                android:id="@+id/imgbtn_sinalogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/white"
+                android:onClick="onClick"
                 android:src="@mipmap/weibo" />
         </LinearLayout>
 
