@@ -1,5 +1,6 @@
 package com.beevle.keeptrain.service;
 
+import com.beevle.keeptrain.model.BwResult;
 import com.beevle.keeptrain.model.BwToken;
 import com.beevle.keeptrain.model.BwUser;
 import com.beevle.keeptrain.model.UpdateInfo;
@@ -23,17 +24,28 @@ public interface IApiService {
     Observable<UpdateInfo> getUpdateInfo(
             @Query("appName") String appName,
             @Query("version") String version);
+
     @POST("/oauth/token")
     Observable<BwToken> getToken(
             @Query("appid") String appId,
             @Query("appsecret") String appSecret,
             @Query("grant_type") String grantType);
+
     /*
     * 用户登录
     *
     * */
     @POST("/user/login")
     Observable<BwUser> Login(@Query("phone") String phone,
-                               @Query("pass") String pass,
-                               @Query("access_token") String access_token);
+                             @Query("pass") String pass,
+                             @Query("access_token") String access_token);
+
+    /*
+    * 获取验证码
+    *
+    * */
+    @POST("/app/captcha")
+    Observable<BwResult> getCaptcha(@Query("phone") String phone,
+                                 @Query("type") String type,
+                                 @Query("access_token") String access_token);
 }

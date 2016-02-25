@@ -32,7 +32,7 @@ public class ApiService {
     private static final String TAG = "DEBUG-ApiService: " + ApiService.class.getSimpleName();
 
     /**
-     * 检测更新
+     * 获取token
      */
     @SuppressWarnings("unused")
     public static void getToken(TokenCallback tokenCallback) {
@@ -149,7 +149,19 @@ public class ApiService {
                 .subscribe(result -> onServiceSuccess(result, serviceCallbak),
                         throwable -> onServiceError(throwable, serviceCallbak));
     }
+    /**
+     * 获取验证码
+     * */
+    public static void getCaptcha(String phone,String type, ServiceCallbak serviceCallbak) {
+        IApiService apiService =
+                ServiceFactory.createServiceFrom(IApiService.class, IApiService.ENDPOINT);
 
+        apiService.getCaptcha(phone, type, UserToken.getToken())
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(result -> onServiceSuccess(result, serviceCallbak),
+                        throwable -> onServiceError(throwable, serviceCallbak));
+    }
     // 显示信息
     private static void onServiceSuccess(BwResult result, ServiceCallbak serviceCallbak) {
         Log.e(TAG, "返回数据: " + result.toString());
